@@ -33,6 +33,8 @@
                     <field name="is_stock_production_lot_enabled" invisible='1'/>
                     <field name="apply_default_lots" attrs="{'readonly': [('is_stock_production_lot_enabled','=',False)]}"/>
                     <field name="transfer_more_items"/>
+                    <field name="move_reserved_quantities"
+                           attrs="{'readonly': [('change_source_location','=',False)]}"/>
                     <field name="autocomplete_the_item_quantity_field"/>
                     <field name="behavior_on_backorder_creation"/>
                     <field name="behavior_on_split_operation" required="1"/>
@@ -42,6 +44,8 @@
                     <field name="check_shipping_information" attrs="{'readonly': [('code','!=','outgoing')]}"/>
                     <field name="hide_qty_to_receive" attrs="{'readonly': [('code','!=','incoming')]}"/>
                     <field name="open_details_screen_first"/>
+                    <field name="is_quality_control_module_installed" invisible='1'/>
+                    <field name="quality_check_per_product_line" attrs="{'readonly': [('is_quality_control_module_installed','=',False)]}"/>
                 </tree>
             </field>
         </record>
@@ -82,6 +86,8 @@
                             <field name="is_stock_production_lot_enabled" invisible='1'/>
                             <field name="apply_default_lots" attrs="{'invisible': [('is_stock_production_lot_enabled','=',False)]}"/>
                             <field name="transfer_more_items"/>
+                            <field name="move_reserved_quantities"
+                                   attrs="{'readonly': [('change_source_location','=',False)]}"/>
                             <field name="autocomplete_the_item_quantity_field"/>
                             <field name="behavior_on_backorder_creation"/>
                             <field name="behavior_on_split_operation" required="1"/>
@@ -90,6 +96,8 @@
                             <field name="check_shipping_information" attrs="{'invisible': [('code','!=','outgoing')]}"/>
                             <field name="hide_qty_to_receive" attrs="{'invisible': [('code','!=','incoming')]}"/>
                             <field name="open_details_screen_first"/>
+                            <field name="is_quality_control_module_installed" invisible='1'/>
+                            <field name="quality_check_per_product_line" attrs="{'readonly': [('is_quality_control_module_installed','=',False)]}"/>
                         </group>
                     </group>
                 </xpath>

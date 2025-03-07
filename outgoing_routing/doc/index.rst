@@ -40,8 +40,12 @@ Change Log
 
 |
 
+* 1.0.4 (2025-03-07)
+    - Fixed issue printing picking operations failed for transfers included entire packages
+    - Optimizing data serialization
+
 * 1.0.3 (2022-04-27)
-    - Fixed reservation and removal strategy on ventor base module ignore force removal strategy on Product Category or/and Location 
+    - Fixed reservation and removal strategy on ventor base module ignore force removal strategy on Product Category or/and Location
 
 * 1.0.2 (2021-11-30)
     - Fixing issue with compute method for strategy_sequence field on stock.location. That was causing issues in POS module

@@ -72,6 +72,8 @@ class VentorOptionSetting(models.Model):
             self._set_confirm_destination_location_cluster_picking_fields()
         elif self.technical_name in ('hide_products_quantity', 'start_inventory_with_one'):
             return self._set_start_inventory_with_one_fields()
+        elif self.technical_name in ('quality_check_per_product_line'):
+            return self._set_quality_check_per_product_line()
 
     def _get_group_settings_value(self, key):
         internal_user_groups = self.env.ref('base.group_user').implied_ids
@@ -163,6 +165,16 @@ class VentorOptionSetting(models.Model):
             use_reusable_packages = self.get_setting_field('use_reusable_packages')
             if use_reusable_packages.value == self.env.ref('ventor_base.bool_true'):
                 self.value = self.env.ref('ventor_base.bool_false')
+
+    def _set_quality_check_per_product_line(self):
+        is_qc_module_installed = self.is_module_installed('quality_control')
+        if not is_qc_module_installed and self.value == self.env.ref('ventor_base.bool_true'):
+            self.value = self.env.ref('ventor_base.bool_false')
+            return {'warning': {
+                'title': _("Warning"),
+                'message': _("To enable the '%s' setting, you must install the Quality Control module.",
+                            self.name),
+            }}
 
     def set_hold_destination_location_fields(self):
         if self.technical_name == 'move_multiple_products' and self.value == self.env.ref('ventor_base.bool_true'):
