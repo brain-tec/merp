@@ -115,6 +115,10 @@ class StockPickingType(models.Model):
         compute="_compute_is_stock_production_lot_enabled"
     )
 
+    is_quality_control_module_installed = fields.Boolean(
+        compute="_compute_is_quality_control_module_installed"
+    )
+
     manage_packages = fields.Boolean(
         string="Show packages fields",
         default=lambda self: self.env.ref("stock.group_tracking_lot")
@@ -134,11 +138,24 @@ class StockPickingType(models.Model):
              "Working only with 'Consignment' setting on Odoo side"
     )
 
+    move_reserved_quantities = fields.Boolean(
+        string="Move reserved quantities",
+        help="Allows moving items reserved by other operations. "
+             "'Move reserved quantities' is available only if 'Change source location' is enabled.",
+    )
+
     open_details_screen_first = fields.Boolean(
         string="Open details screen first",
         default=False,
         help="Clicking on transfer card will bring details screen "
              "instead of opening a whole stock picking"
+    )
+
+    quality_check_per_product_line = fields.Boolean(
+        string="Quality check per product line",
+        help="If the setting is active the Quality check wizard will be shown automatically while "
+             "processing each product line. Disable if you want to do the Quality check manually "
+             "after all product lines are confirmed"
     )
 
     scan_destination_location_once = fields.Boolean(
@@ -206,6 +223,11 @@ class StockPickingType(models.Model):
         for item in self:
             item.is_stock_production_lot_enabled = group_production_lot in internal_user_groups
 
+    def _compute_is_quality_control_module_installed(self):
+        is_qc_installed = self.is_module_installed('quality_control')
+        for item in self:
+            item.is_quality_control_module_installed = is_qc_installed
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -255,6 +277,8 @@ class StockPickingType(models.Model):
                 if stock_picking_type.change_source_location:
                     if not stock_picking_type.confirm_source_location:
                         stock_picking_type.change_source_location = False
+                if not stock_picking_type.change_source_location:
+                    stock_picking_type.move_reserved_quantities = False
 
         if 'apply_quantity_automatically' in vals or 'confirm_destination_location' in vals:
             for stock_picking_type in self:
@@ -296,6 +320,7 @@ class StockPickingType(models.Model):
                 "show_put_in_pack_button": self.show_put_in_pack_button,
                 "manage_packages": self.manage_packages,
                 "manage_product_owner": self.manage_product_owner,
+                "move_reserved_quantities": self.move_reserved_quantities,
                 "behavior_on_backorder_creation": self.behavior_on_backorder_creation,
                 "behavior_on_split_operation": self.behavior_on_split_operation,
                 "scan_destination_package": self.scan_destination_package,
@@ -303,5 +328,6 @@ class StockPickingType(models.Model):
                 "check_shipping_information": self.check_shipping_information,
                 "hide_qty_to_receive": self.hide_qty_to_receive,
                 "open_details_screen_first": self.open_details_screen_first,
+                "quality_check_per_product_line": self.quality_check_per_product_line,
             }
         }

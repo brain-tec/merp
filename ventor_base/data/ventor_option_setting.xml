@@ -186,11 +186,11 @@
         <record id="validate_picking_batch" model="ventor.option.setting">
             <field name="name">Validate Picking</field>
             <field name="technical_name">validate_picking_batch</field>
-            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="value" ref="ventor_base.bool_false"/>
             <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
             <field name="value_type">bool</field>
             <field name="action_type">batch_picking</field>
-            <field name="description">Validate Stock Picking automatically if it completely processed</field>
+            <field name="description">Validate Stock Picking automatically if it completely processed. Note: When ON transfers with all skipped items will be validated with initial quantity</field>
         </record>
 
         <record id="apply_default_lots_batch_picking" model="ventor.option.setting">
@@ -273,6 +273,16 @@
             <field name="value_type">bool</field>
             <field name="action_type">batch_picking</field>
             <field name="description">Showing the Put in pack button in the toolbar instead of keeping it in the hidden menu</field>
+        </record>
+
+        <record id="quality_check_per_product_line_batch" model="ventor.option.setting">
+            <field name="name">Quality check per product line</field>
+            <field name="technical_name">quality_check_per_product_line</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">batch_picking</field>
+            <field name="description">If the setting is active the Quality check wizard will be shown automatically while processing each product line. Disable if you want to do the Quality check manually after all product lines are confirmed</field>
         </record>
 
         <!--Wave picking-->
@@ -399,11 +409,11 @@
         <record id="validate_wave_picking" model="ventor.option.setting">
             <field name="name">Validate Picking</field>
             <field name="technical_name">validate_picking_batch</field>
-            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="value" ref="ventor_base.bool_false"/>
             <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
             <field name="value_type">bool</field>
             <field name="action_type">wave_picking</field>
-            <field name="description">Validate Stock Picking automatically if it completely processed</field>
+            <field name="description">Validate Stock Picking automatically if it completely processed. Note: When ON transfers with all skipped items will be validated with initial quantity</field>
         </record>
 
         <record id="apply_default_lots_wave_picking" model="ventor.option.setting">
@@ -486,6 +496,16 @@
             <field name="value_type">bool</field>
             <field name="action_type">wave_picking</field>
             <field name="description">Showing the Put in pack button in the toolbar instead of keeping it in the hidden menu</field>
+        </record>
+
+        <record id="quality_check_per_product_line_wave_picking" model="ventor.option.setting">
+            <field name="name">Quality check per product line</field>
+            <field name="technical_name">quality_check_per_product_line</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">wave_picking</field>
+            <field name="description">If the setting is active the Quality check wizard will be shown automatically while processing each product line. Disable if you want to do the Quality check manually after all product lines are confirmed</field>
         </record>
 
         <!-- Cluster picking -->
@@ -612,11 +632,11 @@
         <record id="validate_cluster_picking" model="ventor.option.setting">
             <field name="name">Validate Picking</field>
             <field name="technical_name">validate_picking_batch</field>
-            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="value" ref="ventor_base.bool_false"/>
             <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
             <field name="value_type">bool</field>
             <field name="action_type">cluster_picking</field>
-            <field name="description">Validate Stock Picking automatically if it completely processed</field>
+            <field name="description">Validate Stock Picking automatically if it completely processed. Note: When ON transfers with all skipped items will be validated with initial quantity</field>
         </record>
 
         <record id="apply_default_lots_cluster_picking" model="ventor.option.setting">
@@ -741,6 +761,16 @@
             <field name="description">Apply reusable packages as cluster boxes (same as Odoo does) instead of locations (default in Ventor)</field>
         </record>
 
+        <record id="quality_check_per_product_line_cluster_picking" model="ventor.option.setting">
+            <field name="name">Quality check per product line</field>
+            <field name="technical_name">quality_check_per_product_line</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">cluster_picking</field>
+            <field name="description">If the setting is active the Quality check wizard will be shown automatically while processing each product line. Disable if you want to do the Quality check manually after all product lines are confirmed</field>
+        </record>
+
         <!-- Internal transfers -->
         <record id="manage_packages_int_transfers" model="ventor.option.setting">
             <field name="name">Show packages fields</field>
@@ -846,6 +876,16 @@
             <field name="value_type">select</field>
             <field name="action_type">internal_transfers</field>
             <field name="description">Choose the action on the transfer after exit the menu. You can save it or cancel without dialog screen</field>
+        </record>
+
+        <record id="autofill_item_quantity_int_transfers" model="ventor.option.setting">
+            <field name="name">Autofill item quantity</field>
+            <field name="technical_name">autofill_item_quantity</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">internal_transfers</field>
+            <field name="description">Automatically insert available quantity of the selected product</field>
         </record>
 
         <!-- Putaway -->
@@ -1010,6 +1050,16 @@
             <field name="value_type">bool</field>
             <field name="action_type">quick_info</field>
             <field name="description">Prevent users from seeing on-hand quantity</field>
+        </record>
+
+        <record id="fast_printing_quick_info" model="ventor.option.setting">
+            <field name="name">Fast printing</field>
+            <field name="technical_name">fast_printing</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">quick_info</field>
+            <field name="description">When the printing icon is clicked the default label is printed. The default label can be set in the Direct Print by Ventor Tech app if you have it installed. Otherwise, the default Odoo label (2х7 with price) is printed</field>
         </record>
 
         <!-- Scrap Management -->

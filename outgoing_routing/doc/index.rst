@@ -38,5 +38,9 @@ Change Log
 
 |
 
+* 16.0.1.2.0 (2025-03-07)
+    - Fixed issue printing picking operations failed for transfers included entire packages
+    - Optimizing data serialization
+
 * 16.0.1.1.0 (2023-11-04)
     - Fixed tests
