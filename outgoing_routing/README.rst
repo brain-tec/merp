@@ -4,13 +4,13 @@ Picking and Reservation Strategy
 
 * Allows to automatically build optimal picking routes and apply custom reservation options.
 
-1.2.0 (2025-xx-xx)
+17.0.1.2.0 (2025-03-07)
 ***********************
 
-* Fixed an issue printing picking operations failed when the transfer included entire packages
+* Fixed issue printing picking operations failed for transfers included entire packages
 * Optimizing data serialization
 
-1.1.0 (2024-11-04)
+17.0.1.1.0 (2024-11-04)
 ***********************
 
 * Fixed tests
