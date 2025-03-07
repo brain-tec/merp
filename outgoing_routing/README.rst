@@ -10,8 +10,8 @@ Changelog
 =========
 
 
-* 1.0.4 (2025-xx-xx)
-    - Fixed an issue printing picking operations failed when the transfer included entire packages
+* 1.0.4 (2025-03-07)
+    - Fixed issue printing picking operations failed for transfers included entire packages
     - Optimizing data serialization
 
 * 1.0.3 (2022-04-27)
