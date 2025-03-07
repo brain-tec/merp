@@ -3,7 +3,7 @@
 
 {
     'name': 'Picking and Reservation Strategy',
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.2.0",
     'author': 'VentorTech',
     'website': 'https://ventor.tech/',
     'license': 'LGPL-3',
@@ -20,7 +20,7 @@
         'views/res_config.xml',
         'views/stock.xml',
         'views/picking.xml',
-        # 'views/report_stockpicking.xml',
+        'views/report_stockpicking.xml',
         'views/stock_picking_wave.xml',
     ],
 }

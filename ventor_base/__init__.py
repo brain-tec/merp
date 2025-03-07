@@ -42,6 +42,7 @@ def _post_init_hook(env):
         ]
     )
 
+    # Enable Ventor settings related on Packages
     if group_settings.get('group_stock_tracking_lot'):
         ventor_packages_settings = env['ventor.option.setting'].search(
             [
@@ -50,6 +51,7 @@ def _post_init_hook(env):
         )
         ventor_packages_settings.value = env.ref('ventor_base.bool_true')
 
+    # Enable Ventor settings related on Consignment
     if group_settings.get('group_stock_tracking_owner'):
         ventor_owner_settings = env['ventor.option.setting'].search(
             [
@@ -57,3 +59,17 @@ def _post_init_hook(env):
             ]
         )
         ventor_owner_settings.value = env.ref('ventor_base.bool_true')
+
+    # Enable Ventor settings related on Quality Control module
+    is_qc_installed = env.user.is_module_installed('quality_control')
+    if is_qc_installed:
+        # BP, CP, WP menus
+        ventor_quality_control_settings = env['ventor.option.setting'].search(
+            [
+                ('technical_name', '=', 'quality_check_per_product_line'),
+            ]
+        )
+        ventor_quality_control_settings.value = env.ref('ventor_base.bool_true')
+        # WO operation types:
+        stock_picking_type_ids = env['stock.picking.type'].with_context(active_test=False).search([])
+        stock_picking_type_ids.quality_check_per_product_line = True
