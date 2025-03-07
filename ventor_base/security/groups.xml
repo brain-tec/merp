@@ -193,6 +193,13 @@
         <field name="comment">Allow Pallet Transfer from one location to another one</field>
     </record>
 
+    <record id="merp_menu_prohibit_reassigning_transfers" model="res.groups">
+        <field name="name">Prohibit reassigning of transfers</field>
+        <field name="category_id" ref="module_category_merp_access_application"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="comment">Prohibits taking transfers that are already assigned to a different user</field>
+    </record>
+
     <record id="stock.group_stock_manager" model="res.groups">
         <field name="implied_ids" eval="[
         (4, ref('ventor_base.merp_user_validate_inventory_adjustment')),
