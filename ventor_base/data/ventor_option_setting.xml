@@ -1062,6 +1062,16 @@
             <field name="description">When the printing icon is clicked the default label is printed. The default label can be set in the Direct Print by Ventor Tech app if you have it installed. Otherwise, the default Odoo label (2х7 with price) is printed</field>
         </record>
 
+        <record id="show_relocate_button_quick_info" model="ventor.option.setting">
+            <field name="name">Show Relocate button</field>
+            <field name="technical_name">show_relocate_button</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">quick_info</field>
+            <field name="description">Showing the Relocate button on the location card and each product line</field>
+        </record>
+
         <!-- Scrap Management -->
         <record id="manage_packages_scrap_management" model="ventor.option.setting">
             <field name="name">Show packages fields</field>

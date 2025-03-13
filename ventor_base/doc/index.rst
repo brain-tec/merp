@@ -10,6 +10,9 @@ Change Log
 
 |
 
+* 17.0.2.1.0 (2025-xx-xx)
+    - Added the settings "Show Relocate button" to the Quick Info menu
+
 * 17.0.2.0.0 (2025-03-07)
     - Added the settings "Fast printing" to the Quick Info menu
     - Added the "Quality check per product line" setting to Warehouse Opration, Batch Picking, Cluster Picking, Wave Picking menus
