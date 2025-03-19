@@ -70,7 +70,7 @@ class VentorOptionSetting(models.Model):
             return self.set_reusable_packages_related_fields(self._get_group_settings_value('stock.group_tracking_lot'))
         elif self.technical_name in ('confirm_destination_location'):
             self._set_confirm_destination_location_cluster_picking_fields()
-        elif self.technical_name in ('hide_products_quantity', 'start_inventory_with_one'):
+        elif self.technical_name in ('hide_products_quantity', 'start_inventory_with_one', 'start_count_from_zero'):
             return self._set_start_inventory_with_one_fields()
         elif self.technical_name in ('quality_check_per_product_line'):
             return self._set_quality_check_per_product_line()
@@ -252,16 +252,31 @@ class VentorOptionSetting(models.Model):
             ))
 
     def _set_start_inventory_with_one_fields(self):
+        start_inventory_with_one = self.get_setting_field('start_inventory_with_one')
+        hide_products_quantity = self.get_setting_field('hide_products_quantity')
+        start_count_from_zero = self.get_setting_field('start_count_from_zero')
+
+        # Dependency between "Hide products quantity" and "Start inventory with 1"
         if self.action_type == 'instant_inventory' and self.value == self.env.ref('ventor_base.bool_true'):
-            start_inventory_with_one = self.get_setting_field('start_inventory_with_one')
             if start_inventory_with_one.value == self.env.ref('ventor_base.bool_false'):
                 start_inventory_with_one.value = self.env.ref('ventor_base.bool_true')
         if self.technical_name == 'start_inventory_with_one' and self.value == self.env.ref('ventor_base.bool_false'):
-            hide_products_quantity = self.get_setting_field('hide_products_quantity')
             if hide_products_quantity.value == self.env.ref('ventor_base.bool_true'):
                 self.value = self.env.ref('ventor_base.bool_true')
                 return self._get_warning(_(
                         'You cannot change "Start inventory with 1" to False, '
+                        'because you have the "Hide products quantity" setting enabled.'
+                    ))
+
+        # Dependency between "Hide products quantity" and "Start count from zero"
+        if self.technical_name == 'hide_products_quantity' and self.value == self.env.ref('ventor_base.bool_true'):
+            if start_count_from_zero.value == self.env.ref('ventor_base.bool_false'):
+                start_count_from_zero.value = self.env.ref('ventor_base.bool_true')
+        if self.technical_name == 'start_count_from_zero' and self.value == self.env.ref('ventor_base.bool_false'):
+            if hide_products_quantity.value == self.env.ref('ventor_base.bool_true'):
+                self.value = self.env.ref('ventor_base.bool_true')
+                return self._get_warning(_(
+                        'You cannot change "Start count from zero" to False, '
                         'because you have the "Hide products quantity" setting enabled.'
                     ))
 

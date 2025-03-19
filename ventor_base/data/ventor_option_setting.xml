@@ -930,6 +930,16 @@
             <field name="description">Products quantity will be saved but not applied</field>
         </record>
 
+        <record id="start_count_from_zero" model="ventor.option.setting">
+            <field name="name">Start count from zero</field>
+            <field name="technical_name">start_count_from_zero</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">inventory_adjustments</field>
+            <field name="description">When a line is set it shows zero</field>
+        </record>
+
         <!-- Instant inventory -->
         <record id="hold_inventory_location" model="ventor.option.setting">
             <field name="name">Hold inventory location</field>

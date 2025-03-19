@@ -6,6 +6,11 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
+15.0.2.1.0 (2025-xx-xx)
+***********************
+
+* Added the settings "Start count from zero" to the Inventory Adjustments menu
+
 15.0.2.0.0 (2024-03-07)
 ***********************
 
