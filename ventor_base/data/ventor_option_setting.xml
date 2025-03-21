@@ -255,6 +255,16 @@
             <field name="description">Choose how to to process less product qty than initial. You can always split the line, always move less items or choose it all the time (default)</field>
         </record>
 
+        <record id="show_product_information_batch" model="ventor.option.setting">
+            <field name="name">Show description from product</field>
+            <field name="technical_name">show_product_information</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">batch_picking</field>
+            <field name="description">Show the description for the operation from Product -> Inventory</field>
+        </record>
+
         <record id="show_print_attachment_button" model="ventor.option.setting">
             <field name="name">Show Print attachments button</field>
             <field name="technical_name">show_print_attachment_button</field>
@@ -478,6 +488,16 @@
             <field name="description">Choose how to to process less product qty than initial. You can always split the line, always move less items or choose it all the time (default)</field>
         </record>
 
+        <record id="show_product_information_wave_picking" model="ventor.option.setting">
+            <field name="name">Show description from product</field>
+            <field name="technical_name">show_product_information</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">wave_picking</field>
+            <field name="description">Show the description for the operation from Product -> Inventory</field>
+        </record>
+
         <record id="show_print_attachment_button_wave_picking" model="ventor.option.setting">
             <field name="name">Show Print attachments button</field>
             <field name="technical_name">show_print_attachment_button</field>
@@ -699,6 +719,16 @@
             <field name="value_type">select</field>
             <field name="action_type">cluster_picking</field>
             <field name="description">Choose how to to process less product qty than initial. You can always split the line, always move less items or choose it all the time (default)</field>
+        </record>
+
+        <record id="show_product_information_cluster_picking" model="ventor.option.setting">
+            <field name="name">Show description from product</field>
+            <field name="technical_name">show_product_information</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">cluster_picking</field>
+            <field name="description">Show the description for the operation from Product -> Inventory</field>
         </record>
 
         <record id="show_print_attachment_button_cluster_picking" model="ventor.option.setting">

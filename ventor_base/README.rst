@@ -11,12 +11,13 @@ Changelog
 
 * Added the settings "Show Relocate button" to the Quick Info menu
 * Added the settings "Start count from zero" to the Inventory Adjustments menu
+* Added the settings "Show description from product" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
 
 17.0.2.0.0 (2025-03-07)
 ***********************
 
 * Added the settings "Fast printing" to the Quick Info menu
-* Added the "Quality check per product line" setting to Warehouse Opration, Batch Picking, Cluster Picking, Wave Picking menus
+* Added the "Quality check per product line" setting to Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
 * Added the setting "Move reserved quantities" to the Warehouse Operations menu
 * Added the settings "Autofill item quantity" to the Internal Transfer menu
 * Added "Prohibit reassigning of transfers" group to user settings
