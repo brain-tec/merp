@@ -20,16 +20,17 @@ class IrModule(models.Model):
         return result
 
     def _set_quality_check_per_product_line(self):
-        if self.name == 'quality_control':
-            stock_picking_type_ids = self.env['stock.picking.type'].with_context(active_test=False).search([])
-            ventor_quality_control_settings = self.env['ventor.option.setting'].search(
-                    [
-                        ('technical_name', '=', 'quality_check_per_product_line'),
-                    ]
-                )
-            if self.state == 'installed':
-                stock_picking_type_ids.quality_check_per_product_line = True
-                ventor_quality_control_settings.value = self.env.ref('ventor_base.bool_true')
-            elif self.state == 'uninstalled':
-                stock_picking_type_ids.quality_check_per_product_line = False
-                ventor_quality_control_settings.value = self.env.ref('ventor_base.bool_false')
+        for module in self:
+            if module.name == 'quality_control':
+                stock_picking_type_ids = self.env['stock.picking.type'].with_context(active_test=False).search([])
+                ventor_quality_control_settings = self.env['ventor.option.setting'].search(
+                        [
+                            ('technical_name', '=', 'quality_check_per_product_line'),
+                        ]
+                    )
+                if module.state == 'installed':
+                    stock_picking_type_ids.quality_check_per_product_line = True
+                    ventor_quality_control_settings.value = self.env.ref('ventor_base.bool_true')
+                elif module.state == 'uninstalled':
+                    stock_picking_type_ids.quality_check_per_product_line = False
+                    ventor_quality_control_settings.value = self.env.ref('ventor_base.bool_false')
