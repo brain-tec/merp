@@ -10,6 +10,9 @@ Change Log
 
 |
 
+* 14.0.2.1.0 (2025-xx-xx)
+    - Added the settings "Show description from product" to the Warehouse Operations, Batch Picking, Cluster Picking menus
+
 * 14.0.1.11.0 (2024-08-21)
     - Updated the description for the 'Set qty to zero' settings in the Inventory Adjustment menu and 'Show packages field' in the Instant Inventory menu
 
