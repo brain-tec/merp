@@ -255,6 +255,16 @@
             <field name="description">Choose how to to process less product qty than initial. You can always split the line, always move less items or choose it all the time (default)</field>
         </record>
 
+        <record id="show_product_information_batch" model="ventor.option.setting">
+            <field name="name">Show description from product</field>
+            <field name="technical_name">show_product_information</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">batch_picking</field>
+            <field name="description">Show the description for the operation from Product -> Inventory</field>
+        </record>
+
         <record id="show_print_attachment_button" model="ventor.option.setting">
             <field name="name">Show Print attachments button</field>
             <field name="technical_name">show_print_attachment_button</field>
@@ -478,6 +488,16 @@
             <field name="description">Choose how to to process less product qty than initial. You can always split the line, always move less items or choose it all the time (default)</field>
         </record>
 
+        <record id="show_product_information_wave_picking" model="ventor.option.setting">
+            <field name="name">Show description from product</field>
+            <field name="technical_name">show_product_information</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">wave_picking</field>
+            <field name="description">Show the description for the operation from Product -> Inventory</field>
+        </record>
+
         <record id="show_print_attachment_button_wave_picking" model="ventor.option.setting">
             <field name="name">Show Print attachments button</field>
             <field name="technical_name">show_print_attachment_button</field>
@@ -699,6 +719,16 @@
             <field name="value_type">select</field>
             <field name="action_type">cluster_picking</field>
             <field name="description">Choose how to to process less product qty than initial. You can always split the line, always move less items or choose it all the time (default)</field>
+        </record>
+
+        <record id="show_product_information_cluster_picking" model="ventor.option.setting">
+            <field name="name">Show description from product</field>
+            <field name="technical_name">show_product_information</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">cluster_picking</field>
+            <field name="description">Show the description for the operation from Product -> Inventory</field>
         </record>
 
         <record id="show_print_attachment_button_cluster_picking" model="ventor.option.setting">
@@ -930,6 +960,16 @@
             <field name="description">Products quantity will be saved but not applied</field>
         </record>
 
+        <record id="start_count_from_zero" model="ventor.option.setting">
+            <field name="name">Start count from zero</field>
+            <field name="technical_name">start_count_from_zero</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">inventory_adjustments</field>
+            <field name="description">When a line is set it shows zero</field>
+        </record>
+
         <!-- Instant inventory -->
         <record id="hold_inventory_location" model="ventor.option.setting">
             <field name="name">Hold inventory location</field>
@@ -1060,6 +1100,16 @@
             <field name="value_type">bool</field>
             <field name="action_type">quick_info</field>
             <field name="description">When the printing icon is clicked the default label is printed. The default label can be set in the Direct Print by Ventor Tech app if you have it installed. Otherwise, the default Odoo label (2х7 with price) is printed</field>
+        </record>
+
+        <record id="show_relocate_button_quick_info" model="ventor.option.setting">
+            <field name="name">Show Relocate button</field>
+            <field name="technical_name">show_relocate_button</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">quick_info</field>
+            <field name="description">Showing the Relocate button on the location card and each product line</field>
         </record>
 
         <!-- Scrap Management -->
