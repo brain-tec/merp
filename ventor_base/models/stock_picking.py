@@ -192,6 +192,12 @@ class StockPickingType(models.Model):
              "keeping it in the hidden menu"
     )
 
+    show_product_information = fields.Boolean(
+        string="Show description from product",
+        default=True,
+        help="Show the description for the operation from Product->Inventory",
+    )
+
     transfer_more_items = fields.Boolean(
         string="Move more than planned",
         help="Allows moving more items than expected (for example kg of meat, etc)"
@@ -323,6 +329,7 @@ class StockPickingType(models.Model):
                 "move_reserved_quantities": self.move_reserved_quantities,
                 "behavior_on_backorder_creation": self.behavior_on_backorder_creation,
                 "behavior_on_split_operation": self.behavior_on_split_operation,
+                "show_product_information": self.show_product_information,
                 "scan_destination_package": self.scan_destination_package,
                 "confirm_source_package": self.confirm_source_package,
                 "check_shipping_information": self.check_shipping_information,
