@@ -10,7 +10,7 @@ Change Log
 
 |
 
-* 17.0.2.1.0 (2025-xx-xx)
+* 17.0.2.1.0 (2025-03-31)
     - Added the settings "Show Relocate button" to the Quick Info menu
     - Added the settings "Start count from zero" to the Inventory Adjustments menu
     - Added the settings "Show description from product" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
