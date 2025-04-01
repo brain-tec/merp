@@ -6,7 +6,7 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
-13.0.2.1.0 (2025-xx-xx)
+13.0.2.1.0 (2025-03-31)
 ***********************
 
 * Added the settings "Show description from product" to the Warehouse Operations, Batch Picking, Cluster Picking menus

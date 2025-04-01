@@ -10,7 +10,7 @@ Change Log
 
 |
 
-* 13.0.2.1.0 (2025-xx-xx)
+* 13.0.2.1.0 (2025-02-31)
     - Added the settings "Show description from product" to the Warehouse Operations, Batch Picking, Cluster Picking menus
 
 * 13.0.1.8.0 (2024-08-21)
