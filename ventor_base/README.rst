@@ -6,6 +6,10 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
+15.0.2.2.0 (2025-xx-xx)
+***********************
+* Added the settings "Show only lots from source location" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
+
 15.0.2.1.0 (2025-03-31)
 ***********************
 
