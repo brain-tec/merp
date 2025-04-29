@@ -12,6 +12,7 @@ Change Log
 
 * 15.0.2.2.0 (2025-xx-xx)
     - Added the settings "Show only lots from source location" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
+    - Added the ability to grant access rights to users for connecting Ventor PRO/Ventor Lifetime to Odoo.
 
 * 15.0.2.1.0 (2025-03-31)
     - Added the settings "Start count from zero" to the Inventory Adjustments menu
