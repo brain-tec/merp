@@ -22,7 +22,7 @@
                                         string="Provide Access"
                                         type="object"
                                         class="btn btn-outline-primary me-2"/>
-                                        <strong>
+                                        <strong style="margin-left: 5px;">
                                             <field name="ventor_access_status"
                                                     readonly="1"
                                                     decoration-success="ventor_access_status == 'Access is provided'"
