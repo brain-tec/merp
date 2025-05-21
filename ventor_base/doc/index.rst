@@ -10,7 +10,7 @@ Change Log
 
 |
 
-* 18.0.2.2.0 (2025-xx-xx)
+* 18.0.2.2.0 (2025-05-20)
     - Added the settings "Show only lots from source location" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
     - Added the ability to grant access rights to users for connecting Ventor PRO/Ventor Lifetime to Odoo.
 
