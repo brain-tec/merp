@@ -203,6 +203,16 @@
             <field name="description">If it's on. you don't need to scan lot number to confirm it. On receipts the app will create default Odoo lots and apply them to the product. On delivery zone you don't need to confirm lots and they will be taken Odoo by default</field>
         </record>
 
+        <record id="show_only_lots_from_source_location_batch_picking" model="ventor.option.setting">
+            <field name="name">Show only lots from source location</field>
+            <field name="technical_name">show_only_lots_from_source_location</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">batch_picking</field>
+            <field name="description">If it is active you can see only Lots and SN from the source location</field>
+        </record>
+
         <record id="transfer_more_items" model="ventor.option.setting">
             <field name="name">Move more than planned</field>
             <field name="technical_name">transfer_more_items</field>
@@ -436,6 +446,16 @@
             <field name="description">If it's on. you don't need to scan lot number to confirm it. On receipts the app will create default Odoo lots and apply them to the product. On delivery zone you don't need to confirm lots and they will be taken Odoo by default</field>
         </record>
 
+        <record id="show_only_lots_from_source_location_wave_picking" model="ventor.option.setting">
+            <field name="name">Show only lots from source location</field>
+            <field name="technical_name">show_only_lots_from_source_location</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">wave_picking</field>
+            <field name="description">If it is active you can see only Lots and SN from the source location</field>
+        </record>
+
         <record id="transfer_more_items_wave_picking" model="ventor.option.setting">
             <field name="name">Move more than planned</field>
             <field name="technical_name">transfer_more_items</field>
@@ -667,6 +687,16 @@
             <field name="value_type">bool</field>
             <field name="action_type">cluster_picking</field>
             <field name="description">If it's on. you don't need to scan lot number to confirm it. On receipts the app will create default Odoo lots and apply them to the product. On delivery zone you don't need to confirm lots and they will be taken Odoo by default</field>
+        </record>
+
+        <record id="show_only_lots_from_source_cluster_picking" model="ventor.option.setting">
+            <field name="name">Show only lots from source location</field>
+            <field name="technical_name">show_only_lots_from_source_location</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">cluster_picking</field>
+            <field name="description">If it is active you can see only Lots and SN from the source location</field>
         </record>
 
         <record id="transfer_more_items_cluster_picking" model="ventor.option.setting">
