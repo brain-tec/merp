@@ -177,6 +177,12 @@ class StockPickingType(models.Model):
              "It is recommended to disable the setting for the reception area",
     )
 
+    show_only_lots_from_source_location = fields.Boolean(
+        string="Show only lots from source location",
+        default=False,
+        help="If it is active you can see only Lots and SN from the source location",
+    )
+
     show_print_attachment_button = fields.Boolean(
         string="Show Print attachments button",
         default=True,
@@ -316,6 +322,7 @@ class StockPickingType(models.Model):
                 "show_next_product": self.show_next_product,
                 "confirm_product": self.confirm_product,
                 "apply_default_lots": self.apply_default_lots,
+                "show_only_lots_from_source_location": self.show_only_lots_from_source_location,
                 "transfer_more_items": self.transfer_more_items,
                 "confirm_destination_location": self.confirm_destination_location,
                 "apply_quantity_automatically": self.apply_quantity_automatically,
