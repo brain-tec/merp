@@ -30,12 +30,9 @@ class StockQuant(models.Model):
             key = lambda q: (q.removal_prio, q.id)
         return key, reverse
 
-    @api.model
-    def _update_reserved_quantity(self, product_id, location_id, quantity, lot_id=None, package_id=None, owner_id=None, strict=True):
-        """ Updates reserved quantity in quants
-        """
+    def _get_reserve_quantity(self, product_id, location_id, quantity, product_packaging_id=None, uom_id=None, lot_id=None, package_id=None, owner_id=None, strict=False):
         self = self.with_context(reservation_strategy=self.env.user.company_id.stock_reservation_strategy, reservation_quantity=quantity)
-        return super(StockQuant, self)._update_reserved_quantity(product_id, location_id, quantity, lot_id, package_id, owner_id, strict)
+        return super(StockQuant, self)._get_reserve_quantity(product_id, location_id, quantity, product_packaging_id, uom_id, lot_id, package_id, owner_id, strict)
 
     def _gather(self, product_id, location_id, lot_id=None, package_id=None, owner_id=None, strict=False, qty=0):
         """ Gather (and reorder, if required) quants
