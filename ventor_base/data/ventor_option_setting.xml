@@ -2,6 +2,16 @@
 <odoo>
     <data noupdate="1">
         <!-- Package management -->
+        <record id="group_lines" model="ventor.option.setting">
+            <field name="name">Group lines</field>
+            <field name="technical_name">group_lines</field>
+            <field name="value" ref="ventor_base.bool_true"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">package_management</field>
+            <field name="description">Groups lines of the same products</field>
+        </record>
+
         <record id="enable_over_flow" model="ventor.option.setting">
             <field name="name">Pack extra items</field>
             <field name="technical_name">enable_over_flow</field>
