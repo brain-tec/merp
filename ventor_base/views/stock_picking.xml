@@ -33,6 +33,7 @@
                     <field name="is_stock_production_lot_enabled" invisible='1'/>
                     <field name="apply_default_lots" readonly="is_stock_production_lot_enabled == False"/>
                     <field name="show_only_lots_from_source_location"/>
+                    <field name="change_lots"/>
                     <field name="transfer_more_items"/>
                     <field name="move_reserved_quantities"
                            readonly="change_source_location == False"/>
@@ -88,6 +89,7 @@
                             <field name="is_stock_production_lot_enabled" invisible='1'/>
                             <field name="apply_default_lots" invisible="is_stock_production_lot_enabled == False"/>
                             <field name="show_only_lots_from_source_location"/>
+                            <field name="change_lots"/>
                             <field name="transfer_more_items"/>
                             <field name="move_reserved_quantities"
                                    readonly="change_source_location == False"/>
