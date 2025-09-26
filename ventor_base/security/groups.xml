@@ -179,13 +179,15 @@
             <field name="implied_ids" eval="[(4, ref('ventor_base.merp_user_validate_inventory_adjustment'))]"/>
         </record>
 
-
-
-
         <data noupdate="1">
+            <record model="ir.module.category" id="module_ventor_category">
+                <field name="name">Ventor</field>
+                <field name="sequence">90</field>
+            </record>
+
             <record model="res.groups.privilege" id="res_groups_privilege_ventor_role">
                 <field name="name">Ventor Role</field>
-                <field name="category_id" ref="base.module_category_supply_chain"/>
+                <field name="category_id" ref="module_ventor_category"/>
             </record>
 
             <record id="ventor_role_wh_worker" model="res.groups">
