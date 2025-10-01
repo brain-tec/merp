@@ -74,6 +74,8 @@ class VentorOptionSetting(models.Model):
             return self._set_start_inventory_with_one_fields()
         elif self.technical_name in ('quality_check_per_product_line'):
             return self._set_quality_check_per_product_line()
+        elif self.technical_name in ('group_lines', 'transfer_more_items', 'behavior_on_split_operation'):
+            return self._set_move_more_than_planned()
 
     def _get_group_settings_value(self, key):
         internal_user_groups = self.env.ref('base.group_user').implied_ids
@@ -194,6 +196,34 @@ class VentorOptionSetting(models.Model):
     def set_manage_product_owner_fields(self, group_stock_tracking_owner):
         if not group_stock_tracking_owner and self.value == self.env.ref('ventor_base.bool_true'):
             self.value = self.env.ref('ventor_base.bool_false')
+
+    def _set_move_more_than_planned(self):
+        if self.value == self.env.ref('ventor_base.bool_true'):
+            transfer_more_items = self.get_setting_field('transfer_more_items')
+            if transfer_more_items.value == self.env.ref('ventor_base.bool_true'):
+                transfer_more_items.value = self.env.ref('ventor_base.bool_false')
+                return self._get_warning(_(
+                    'Because you changed "Group lines" to True, '
+                    'automatically the following settings were also changed: '
+                    '\n- "​Move more than planned" was changed to False'
+                ))
+
+        if self.technical_name == 'transfer_more_items' and self.value == self.env.ref('ventor_base.bool_true'):
+            group_lines = self.get_setting_field('group_lines')
+            if group_lines.value == self.env.ref('ventor_base.bool_true'):
+                self.value = self.env.ref('ventor_base.bool_false')
+                return self._get_warning(_(
+                    'You cannot change "Move more than planned" to True, '
+                    'because you have the "Group lines" setting enabled.'
+                ))
+
+        if self.technical_name == 'behavior_on_split_operation':
+            group_lines = self.get_setting_field('group_lines')
+            if group_lines.value == self.env.ref('ventor_base.bool_true'):
+                return self._get_warning(_(
+                    'The "Behavior on split operation" setting will not be applied '
+                    'because the "Group lines" setting is set to True'
+                ))
 
     def set_related_package_fields(self, group_stock_tracking_lot):
         if not group_stock_tracking_lot:
