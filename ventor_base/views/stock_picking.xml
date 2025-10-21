@@ -111,6 +111,9 @@
                         </group>
                     </group>
                 </xpath>
+                <xpath expr="//field[@name='set_package_type']" position="after">
+                    <field name="ventor_entier_package" groups="stock.group_tracking_lot"/>
+                </xpath>
             </field>
         </record>
 

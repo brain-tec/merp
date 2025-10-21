@@ -220,6 +220,11 @@ class StockPickingType(models.Model):
         help="Allows moving more items than expected (for example kg of meat, etc)"
     )
 
+    ventor_entier_package = fields.Boolean(
+        string="Ventor Entier Package",
+        help="If ticked, packages to move will be directly displayed in Ventor instead of the products they contain",
+    )
+
     @api.depends('code')
     def _compute_behavior_on_split_operation(self):
         for operation_type in self:
