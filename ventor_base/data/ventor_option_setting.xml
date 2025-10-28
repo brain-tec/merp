@@ -93,6 +93,16 @@
             <field name="description">User can change default source location to pick item from another location. Works only if "Confirm source location" setting is active</field>
         </record>
 
+        <record id="scan_source_location_once_batch_picking" model="ventor.option.setting">
+            <field name="name">Scan source location once</field>
+            <field name="technical_name">scan_source_location_once</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">batch_picking</field>
+            <field name="description">Scan source location once for all lines in one location</field>
+        </record>
+
         <record id="confirm_product" model="ventor.option.setting">
             <field name="name">Confirm product</field>
             <field name="technical_name">confirm_product</field>
@@ -346,6 +356,16 @@
             <field name="description">User can change default source location to pick item from another location. Works only if "Confirm source location" setting is active</field>
         </record>
 
+        <record id="scan_source_location_once_wave_picking" model="ventor.option.setting">
+            <field name="name">Scan source location once</field>
+            <field name="technical_name">scan_source_location_once</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">wave_picking</field>
+            <field name="description">Scan source location once for all lines in one location</field>
+        </record>
+
         <record id="confirm_product_wave_picking" model="ventor.option.setting">
             <field name="name">Confirm product</field>
             <field name="technical_name">confirm_product</field>
@@ -587,6 +607,16 @@
             <field name="value_type">bool</field>
             <field name="action_type">cluster_picking</field>
             <field name="description">User can change default source location to pick item from another location. Works only if "Confirm source location" setting is active</field>
+        </record>
+
+        <record id="scan_source_location_once_cluster_picking" model="ventor.option.setting">
+            <field name="name">Scan source location once</field>
+            <field name="technical_name">scan_source_location_once</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">cluster_picking</field>
+            <field name="description">Scan source location once for all lines in one location</field>
         </record>
 
         <record id="confirm_product_cluster_picking" model="ventor.option.setting">
@@ -1234,6 +1264,17 @@
             <field name="value_type">bool</field>
             <field name="action_type">rfid</field>
             <field name="description">Products quantity will be saved but not applied</field>
+        </record>
+
+        <!-- Order Recheck -->
+        <record id="order_recheck" model="ventor.option.setting">
+            <field name="name">Blinde recheck</field>
+            <field name="technical_name">blind_recheck</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">order_recheck</field>
+            <field name="description">Hides the expected quantity and report text</field>
         </record>
     </data>
 </odoo>
