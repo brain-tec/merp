@@ -38,6 +38,10 @@ Change Log
 
 |
 
+* 18.0.1.4.0 (2025-10-27)
+    - Fixed issue by Quantity Reservation Strategy
+    - Fixed issue with “By Location Priority” removal strategy
+
 * 18.0.1.3.0 (2025-03-07)
     - Optimizing data serialization
     - Fixed displaying Sale Order barcode on report

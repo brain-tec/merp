@@ -11,7 +11,7 @@
                 <list create="false" editable="top">
                     <field name="name" readonly="1"/>
                     <field name="technical_name" readonly="1"/>
-                    <field name="settings_dependency" invisible="1"/>
+                    <field name="settings_dependency" column_invisible="1"/>
                     <field name="value" readonly="technical_name == 'show_next_product'" options="{'no_create': True, 'no_open': True}"/>
                     <field name="value_type" readonly="1" groups="base.group_no_one"/>
                     <field name="action_type" readonly="1" groups="base.group_no_one"/>
@@ -138,7 +138,16 @@
             <field name="domain">[('action_type', '=', 'rfid')]</field>
         </record>
 
-<!-- Menus -->
+        <record id='ventor_order_recheck' model='ir.actions.act_window'>
+            <field name="name">Order Recheck</field>
+            <field name="res_model">ventor.option.setting</field>
+            <field name="view_mode">list</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="ventor_settings_tree_view"/>
+            <field name="domain">[('action_type', '=', 'order_recheck')]</field>
+        </record>
+
+        <!-- Menus -->
         <menuitem name="Package Management"
                   id="ventor_package_management_app_menu"
                   parent="ventor_base.ventor_settings_app_menu"
@@ -216,5 +225,11 @@
                   parent="ventor_base.ventor_settings_app_menu"
                   action="ventor_rfid_action"
                   sequence="13"/>
+
+        <menuitem name="Order Recheck"
+                  id="ventor_order_recheck_app_menu"
+                  parent="ventor_base.ventor_settings_app_menu"
+                  action="ventor_order_recheck"
+                  sequence="14"/>
     </data>
 </odoo>
