@@ -6,6 +6,14 @@ Base module that allows relation between Ventor modules
 Changelog
 ---------
 
+17.0.2.3.0 (2025-10-27)
+***********************
+* Added the settings "Change Lots and S/N" to the Warehouse Operations menu
+* Added the settings "Blind recheck" to the Order Recheck menu
+* Added the settings "Group lines" to the Batch Picking menu
+* Added the settings "Scan source location once" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
+* Added the settings "Group lines" to the Package Management menu
+
 17.0.2.2.0 (2025-05-20)
 ***********************
 * Added the settings "Show only lots from source location" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
