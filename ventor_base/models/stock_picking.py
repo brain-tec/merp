@@ -68,6 +68,12 @@ class StockPickingType(models.Model):
              "Works only if 'Confirm source location' setting is active",
     )
 
+    change_lots = fields.Boolean(
+        string="Change Lots and S/N",
+        default=True,
+        help="User can change Lots and Serial Numbers that Odoo reserves"
+    )
+
     check_shipping_information = fields.Boolean(
         string="Check shipping information",
         help="If the setting is active the user can edit shipping information "
@@ -170,6 +176,11 @@ class StockPickingType(models.Model):
              "gets yellow color means user has to confirm it"
     )
 
+    scan_source_location_once = fields.Boolean(
+        string="Scan source location once",
+        help="Scan source location once for all lines in one location"
+    )
+
     show_next_product = fields.Boolean(
         string="Show next product",
         help="Product field will show the next product to be picked. "
@@ -253,6 +264,7 @@ class StockPickingType(models.Model):
     def _onchange_confirm_source_location(self):
         if not self.confirm_source_location:
             self.change_source_location = False
+            self.scan_source_location_once = False
 
     @api.onchange('confirm_destination_location')
     def _onchange_confirm_destination_location(self):
@@ -291,6 +303,8 @@ class StockPickingType(models.Model):
                         stock_picking_type.change_source_location = False
                 if not stock_picking_type.change_source_location:
                     stock_picking_type.move_reserved_quantities = False
+                if not stock_picking_type.confirm_source_location:
+                    stock_picking_type.scan_source_location_once = False
 
         if 'apply_quantity_automatically' in vals or 'confirm_destination_location' in vals:
             for stock_picking_type in self:
@@ -319,9 +333,11 @@ class StockPickingType(models.Model):
                 "allow_creating_new_packages": self.allow_creating_new_packages,
                 "confirm_source_location": self.confirm_source_location,
                 "change_source_location": self.change_source_location,
+                "scan_source_location_once": self.scan_source_location_once,
                 "show_next_product": self.show_next_product,
                 "confirm_product": self.confirm_product,
                 "apply_default_lots": self.apply_default_lots,
+                "change_lots": self.change_lots,
                 "show_only_lots_from_source_location": self.show_only_lots_from_source_location,
                 "transfer_more_items": self.transfer_more_items,
                 "confirm_destination_location": self.confirm_destination_location,
