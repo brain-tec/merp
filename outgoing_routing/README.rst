@@ -4,7 +4,7 @@ Picking and Reservation Strategy
 
 * Allows to automatically build optimal picking routes and apply custom reservation options.
 
-17.0.1.3.0 (2025-xx-xx)
+17.0.1.3.0 (2025-10-27)
 ***********************
 
 * Fixed issue by Quantity Reservation Strategy

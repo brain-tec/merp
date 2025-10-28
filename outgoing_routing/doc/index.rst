@@ -38,7 +38,7 @@ Change Log
 
 |
 
-* 17.0.1.3.0 (2025-xx-xx)
+* 17.0.1.3.0 (2025-10-27)
     - Fixed issue by Quantity Reservation Strategy
 
 * 17.0.1.2.0 (2025-03-07)
