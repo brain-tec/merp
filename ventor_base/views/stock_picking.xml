@@ -14,6 +14,8 @@
                     <field name="company_id" invisible="True"/>
                     <field name="confirm_source_location"/>
                     <field name="change_source_location"/>
+                    <field name="scan_source_location_once"
+                           readonly="confirm_source_location == False"/>
                     <field name="confirm_product"/>
                     <field name="show_next_product"/>
                     <field name="confirm_destination_location"/>
@@ -64,6 +66,8 @@
                             <field name="confirm_source_location"/>
                             <field name="change_source_location"
                                    readonly="confirm_source_location != True"/>
+                            <field name="scan_source_location_once"
+                                   readonly="confirm_source_location == False"/>
                             <field name="confirm_product"/>
                             <field name="show_next_product"/>
                             <field name="confirm_destination_location"/>
