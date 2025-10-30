@@ -42,6 +42,7 @@
                     <field name="autocomplete_the_item_quantity_field"/>
                     <field name="behavior_on_backorder_creation"/>
                     <field name="behavior_on_split_operation" required="1"/>
+                    <field name="default_batch_menu" required="1"/>
                     <field name="show_product_information" />
                     <field name="show_print_attachment_button"/>
                     <field name="show_put_in_pack_button" readonly="is_package_tracking_enabled == False"/>
@@ -100,6 +101,7 @@
                             <field name="autocomplete_the_item_quantity_field"/>
                             <field name="behavior_on_backorder_creation"/>
                             <field name="behavior_on_split_operation" required="1"/>
+                            <field name="default_batch_menu" required="1"/>
                             <field name="show_product_information" />
                             <field name="show_print_attachment_button"/>
                             <field name="show_put_in_pack_button" invisible="is_package_tracking_enabled == False"/>
