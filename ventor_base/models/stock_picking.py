@@ -104,6 +104,16 @@ class StockPickingType(models.Model):
              "The dot next to the field gets yellow color means user has to confirm it"
     )
 
+    default_batch_menu = fields.Selection(
+        [
+            ("batch_picking", "Batch picking"),
+            ("cluster_picking", "Cluster picking"),
+        ],
+        string="Default batch menu",
+        default="batch_picking",
+        help="Specifies which menu will be opened when a batch link is clicked"
+    )
+
     hide_qty_to_receive = fields.Boolean(
         string="Hide QTYs to receive",
         help="Setting’s description: User will not see how many QTYs they need to receive."
@@ -353,6 +363,7 @@ class StockPickingType(models.Model):
                 "move_reserved_quantities": self.move_reserved_quantities,
                 "behavior_on_backorder_creation": self.behavior_on_backorder_creation,
                 "behavior_on_split_operation": self.behavior_on_split_operation,
+                "default_batch_menu": self.default_batch_menu,
                 "scan_destination_package": self.scan_destination_package,
                 "confirm_source_package": self.confirm_source_package,
                 "check_shipping_information": self.check_shipping_information,
