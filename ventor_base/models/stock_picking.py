@@ -114,6 +114,12 @@ class StockPickingType(models.Model):
         help="Specifies which menu will be opened when a batch link is clicked"
     )
 
+    count_picking_urgent = fields.Integer(
+        compute="_compute_count_picking_urgent",
+        string="Urgent Transfers",
+        store=True,
+    )
+
     hide_qty_to_receive = fields.Boolean(
         string="Hide QTYs to receive",
         help="Setting’s description: User will not see how many QTYs they need to receive."
@@ -165,6 +171,11 @@ class StockPickingType(models.Model):
         default=False,
         help="Clicking on transfer card will bring details screen "
              "instead of opening a whole stock picking"
+    )
+
+    picking_ids = fields.One2many(
+        comodel_name="stock.picking",
+        inverse_name="picking_type_id",
     )
 
     quality_check_per_product_line = fields.Boolean(
@@ -230,9 +241,9 @@ class StockPickingType(models.Model):
         help="Allows moving more items than expected (for example kg of meat, etc)"
     )
 
-    ventor_entier_package = fields.Boolean(
-        string="Ventor Entier Package",
-        help="If ticked, packages to move will be directly displayed in Ventor instead of the products they contain",
+    ventor_entire_package = fields.Boolean(
+        string="Ventor Entire Package",
+        help="When ON, the operation requires verification of the package only, not its contents",
     )
 
     @api.depends('code')
@@ -265,6 +276,17 @@ class StockPickingType(models.Model):
         is_qc_installed = self.is_module_installed('quality_control')
         for item in self:
             item.is_quality_control_module_installed = is_qc_installed
+
+    @api.depends('picking_ids.state', 'picking_ids.priority')
+    def _compute_count_picking_urgent(self):
+        StockPicking = self.env['stock.picking']
+        for picking_type in self:
+            picking_domain = [
+                ('picking_type_id', '=', picking_type.id),
+                ('priority', '=', '1'),
+                ('state', '=', 'assigned'),
+            ]
+            picking_type.count_picking_urgent = StockPicking.search_count(picking_domain)
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -364,6 +386,7 @@ class StockPickingType(models.Model):
                 "show_put_in_pack_button": self.show_put_in_pack_button,
                 "show_product_information": self.show_product_information,
                 "manage_packages": self.manage_packages,
+                "ventor_entire_package": self.ventor_entire_package,
                 "manage_product_owner": self.manage_product_owner,
                 "move_reserved_quantities": self.move_reserved_quantities,
                 "behavior_on_backorder_creation": self.behavior_on_backorder_creation,
