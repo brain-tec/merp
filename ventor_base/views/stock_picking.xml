@@ -24,6 +24,7 @@
                     <field name="apply_quantity_automatically"/>
                     <field name="is_package_tracking_enabled" invisible='1'/>
                     <field name="manage_packages" readonly="is_package_tracking_enabled == False"/>
+                    <field name="ventor_entire_package" groups="stock.group_tracking_lot"/>
                     <field name="allow_creating_new_packages"
                            readonly="is_package_tracking_enabled == False or manage_packages == False"/>
                     <field name="is_consignment_enabled" invisible='1'/>
@@ -112,7 +113,7 @@
                     </group>
                 </xpath>
                 <xpath expr="//field[@name='set_package_type']" position="after">
-                    <field name="ventor_entier_package" groups="stock.group_tracking_lot"/>
+                    <field name="ventor_entire_package" groups="stock.group_tracking_lot"/>
                 </xpath>
             </field>
         </record>

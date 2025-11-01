@@ -220,9 +220,9 @@ class StockPickingType(models.Model):
         help="Allows moving more items than expected (for example kg of meat, etc)"
     )
 
-    ventor_entier_package = fields.Boolean(
-        string="Ventor Entier Package",
-        help="If ticked, packages to move will be directly displayed in Ventor instead of the products they contain",
+    ventor_entire_package = fields.Boolean(
+        string="Ventor Entire Package",
+        help="When ON, the operation requires verification of the package only, not its contents",
     )
 
     @api.depends('code')

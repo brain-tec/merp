@@ -173,6 +173,16 @@
             <field name="description">User can create new packages by scanning a new barcode or create it manually</field>
         </record>
 
+        <record id="ventor_entire_package_batch_picking" model="ventor.option.setting">
+            <field name="name">Ventor Entire Package</field>
+            <field name="technical_name">ventor_entire_package</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">batch_picking</field>
+            <field name="description">When ON, the operation requires verification of the package only, not its contents</field>
+        </record>
+
         <record id="confirm_source_package_batch_picking" model="ventor.option.setting">
             <field name="name">Confirm source package</field>
             <field name="technical_name">confirm_source_package</field>
