@@ -436,6 +436,16 @@
             <field name="description">Scan source (destination) packages right after scanning source (destination) location. Use it if you move from one package to another or pick items from packages or pallets. Works only if package management settings is active on Odoo side</field>
         </record>
 
+        <record id="ventor_entire_wave_picking" model="ventor.option.setting">
+            <field name="name">Ventor Entire Package</field>
+            <field name="technical_name">ventor_entire_package</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">wave_picking</field>
+            <field name="description">When ON, the operation requires verification of the package only, not its contents</field>
+        </record>
+
         <record id="allow_creating_new_packages_wave_picking" model="ventor.option.setting">
             <field name="name">Allow creating new packages</field>
             <field name="technical_name">allow_creating_new_packages</field>
@@ -687,6 +697,16 @@
             <field name="value_type">bool</field>
             <field name="action_type">cluster_picking</field>
             <field name="description">Scan source (destination) packages right after scanning source (destination) location. Use it if you move from one package to another or pick items from packages or pallets. Works only if package management settings is active on Odoo side</field>
+        </record>
+
+        <record id="ventor_entire_cluster_picking" model="ventor.option.setting">
+            <field name="name">Ventor Entire Package</field>
+            <field name="technical_name">ventor_entire_package</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">cluster_picking</field>
+            <field name="description">When ON, the operation requires verification of the package only, not its contents</field>
         </record>
 
         <record id="allow_creating_new_packages_cluster_picking" model="ventor.option.setting">
