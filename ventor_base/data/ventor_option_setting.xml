@@ -1050,6 +1050,16 @@
             <field name="description">When a line is set it shows zero</field>
         </record>
 
+        <record id="fast_count" model="ventor.option.setting">
+            <field name="name">Fast count</field>
+            <field name="technical_name">fast_count</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">inventory_adjustments</field>
+            <field name="description">The first scan makes an increment if the quant is unique; if not, it focuses on related quants (supposed for flows with unique product quants in location and scanning one location at a time)</field>
+        </record>
+
         <!-- Instant inventory -->
         <record id="hold_inventory_location" model="ventor.option.setting">
             <field name="name">Hold inventory location</field>
