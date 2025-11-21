@@ -24,6 +24,7 @@
                     <field name="apply_quantity_automatically"/>
                     <field name="is_package_tracking_enabled" invisible='1'/>
                     <field name="manage_packages" readonly="is_package_tracking_enabled == False"/>
+                    <field name="ventor_entire_package" groups="stock.group_tracking_lot"/>
                     <field name="allow_creating_new_packages"
                            readonly="is_package_tracking_enabled == False or manage_packages == False"/>
                     <field name="is_consignment_enabled" invisible='1'/>
@@ -42,6 +43,7 @@
                     <field name="autocomplete_the_item_quantity_field"/>
                     <field name="behavior_on_backorder_creation"/>
                     <field name="behavior_on_split_operation" required="1"/>
+                    <field name="default_batch_menu" required="1"/>
                     <field name="show_product_information" />
                     <field name="show_print_attachment_button"/>
                     <field name="show_put_in_pack_button" readonly="is_package_tracking_enabled == False"/>
@@ -100,6 +102,7 @@
                             <field name="autocomplete_the_item_quantity_field"/>
                             <field name="behavior_on_backorder_creation"/>
                             <field name="behavior_on_split_operation" required="1"/>
+                            <field name="default_batch_menu" required="1"/>
                             <field name="show_product_information" />
                             <field name="show_print_attachment_button"/>
                             <field name="show_put_in_pack_button" invisible="is_package_tracking_enabled == False"/>
@@ -110,6 +113,9 @@
                             <field name="quality_check_per_product_line" readonly="is_quality_control_module_installed == False"/>
                         </group>
                     </group>
+                </xpath>
+                <xpath expr="//field[@name='set_package_type']" position="after">
+                    <field name="ventor_entire_package" groups="stock.group_tracking_lot"/>
                 </xpath>
             </field>
         </record>
