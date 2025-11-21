@@ -6,33 +6,39 @@ Base module that allows relation between Ventor modules
 Changelog
 ---------
 
+17.0.2.4.0 (2025-11-20)
+***********************
+* Added functionality for displaying urgent transfers in the Warehouse Operations menu
+* Added the setting "Fast count" to the Inventory Adjustments menu
+* Added the setting "Default batch menu" to the Warehouse Operations menu
+
 17.0.2.3.0 (2025-10-27)
 ***********************
-* Added the settings "Change Lots and S/N" to the Warehouse Operations menu
-* Added the settings "Blind recheck" to the Order Recheck menu
-* Added the settings "Group lines" to the Batch Picking menu
-* Added the settings "Scan source location once" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
-* Added the settings "Group lines" to the Package Management menu
+* Added the setting "Change Lots and S/N" to the Warehouse Operations menu
+* Added the setting "Blind recheck" to the Order Recheck menu
+* Added the setting "Group lines" to the Batch Picking menu
+* Added the setting "Scan source location once" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
+* Added the setting "Group lines" to the Package Management menu
 
 17.0.2.2.0 (2025-05-20)
 ***********************
-* Added the settings "Show only lots from source location" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
+* Added the setting "Show only lots from source location" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
 * Added the ability to grant access rights to users for connecting Ventor PRO/Ventor Lifetime to Odoo.
 
 17.0.2.1.0 (2025-03-31)
 ***********************
 
-* Added the settings "Show Relocate button" to the Quick Info menu
-* Added the settings "Start count from zero" to the Inventory Adjustments menu
-* Added the settings "Show description from product" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
+* Added the setting "Show Relocate button" to the Quick Info menu
+* Added the setting "Start count from zero" to the Inventory Adjustments menu
+* Added the setting "Show description from product" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
 
 17.0.2.0.0 (2025-03-07)
 ***********************
 
-* Added the settings "Fast printing" to the Quick Info menu
+* Added the setting "Fast printing" to the Quick Info menu
 * Added the "Quality check per product line" setting to Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus
 * Added the setting "Move reserved quantities" to the Warehouse Operations menu
-* Added the settings "Autofill item quantity" to the Internal Transfer menu
+* Added the setting "Autofill item quantity" to the Internal Transfer menu
 * Added "Prohibit reassigning of transfers" group to user settings
 
 17.0.1.7.0 (2024-08-21)
