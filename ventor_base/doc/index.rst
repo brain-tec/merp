@@ -14,7 +14,7 @@ Change Log
     - Added functionality for displaying urgent transfers in the Warehouse Operations menu
     - Added the setting "Fast count" to the Inventory Adjustments menu
     - Added the setting "Default batch menu" to the Warehouse Operations menu
-    - Added the "Ventor Entire Package" setting for Operation Types.
+    - Added the "Ventor Entire Package" setting for Operation Types
 
 * 19.0.2.3.0 (2025-10-27)
     - Added the setting "Scan source location once" to the Warehouse Operations, Batch Picking, Cluster Picking, Wave Picking menus

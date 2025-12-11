@@ -120,7 +120,7 @@
             <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
             <field name="value_type">bool</field>
             <field name="action_type">batch_picking</field>
-            <field name="description"></field>
+            <field name="description">Product field will show the next product to be picked. Use the setting during picking and delivery. It is recommended to disable the setting for the reception area</field>
         </record>
 
         <record id="confirm_destination_location" model="ventor.option.setting">
@@ -393,7 +393,7 @@
             <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
             <field name="value_type">bool</field>
             <field name="action_type">wave_picking</field>
-            <field name="description"></field>
+            <field name="description">Product field will show the next product to be picked. Use the setting during picking and delivery. It is recommended to disable the setting for the reception area</field>
         </record>
 
         <record id="confirm_destination_location_wave_picking" model="ventor.option.setting">
