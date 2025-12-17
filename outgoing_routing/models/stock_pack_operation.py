@@ -16,3 +16,17 @@ class StockPackOperation(models.Model):
             res &= super(StockPackOperation, self)._compute_operation_valid()
         res &= not self.ventor_picked
         return res
+
+    def write(self, vals):
+        res = super().write(vals)
+
+        if self.env.context.get("ventor_sync_ventor_picked"):
+            return res
+
+        if "ventor_picked" in vals and self.move_id:
+            self.move_id.with_context(ventor_sync_ventor_picked=True).write({
+                "ventor_picked": vals["ventor_picked"],
+            })
+
+        return res
+
