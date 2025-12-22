@@ -3,13 +3,19 @@
 
 import math
 
-from odoo import fields, models
+from odoo import api,fields, models
 from odoo.exceptions import UserError
 
 
 class MultiplePackWizard(models.TransientModel):
     _name = 'multiple.pack.wizard'
     _description = 'Wizard: Multiple Packages'
+
+    allowed_package_type_ids = fields.Many2many(
+        'stock.package.type',
+        compute='_compute_allowed_package_type_ids',
+        readonly=True,
+    )
 
     move_line_id = fields.Many2one(
         'stock.move.line',
@@ -37,6 +43,20 @@ class MultiplePackWizard(models.TransientModel):
         'stock.package.type',
         string="Package Type",
     )
+
+    @api.depends('move_line_id.move_id.picking_id.carrier_id')
+    def _compute_allowed_package_type_ids(self):
+        package_type_model = self.env['stock.package.type']
+        for wizard in self:
+            carrier = wizard.move_line_id.move_id.picking_id.carrier_id
+            if carrier:
+                allowed_ids = package_type_model.search([
+                    ('package_carrier_type', '=', carrier.delivery_type),
+                ]).ids
+            else:
+                allowed_ids = package_type_model.search([]).ids
+
+            wizard.allowed_package_type_ids = [(6, 0, allowed_ids)]
 
     def action_pack(self):
         self.ensure_one()
@@ -119,7 +139,7 @@ class MultiplePackWizard(models.TransientModel):
         vals = {}
         if self.package_type_id:
             vals['package_type_id'] = self.package_type_id.id
-        return self.env['stock.quant.package'].create(vals)
+        return self.env['stock.package'].create(vals)
 
     def _create_line_for_package(self, base_move_line, package, qty):
         base_move_line.copy({

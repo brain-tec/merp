@@ -11,6 +11,7 @@
 
                 <xpath expr="//field[@name='product_uom_id' and @groups='uom.group_uom']" position="after">
                     <button name="action_open_multiple_pack_wizard"
+                            groups="ventor_base.merp_menu_multiple_packages"
                             type="object"
                             string="Multiple packages"
                             class="oe_link"/>
