@@ -200,6 +200,16 @@
         <field name="comment">Prohibits taking transfers that are already assigned to a different user</field>
     </record>
 
+    <record id="merp_menu_multiple_packages" model="res.groups">
+        <field name="name">Warehouse Operations: Allow multiple packages</field>
+        <field name="category_id" ref="module_category_merp_access_application"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="comment">
+            Multiple Packages lets you quickly split one stock move line into several packages by automatically calculating quantities per package.
+        </field>
+        <field name="implied_ids" eval="[(4, ref('stock.group_tracking_lot'))]"/>
+    </record>
+
     <record id="stock.group_stock_manager" model="res.groups">
         <field name="implied_ids" eval="[
         (4, ref('ventor_base.merp_user_validate_inventory_adjustment')),
