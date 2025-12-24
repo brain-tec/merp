@@ -3,6 +3,8 @@
 
 from . import models
 from . import report
+from . import wizard
+
 from odoo import api, SUPERUSER_ID
 
 def _post_init_hook(env):
