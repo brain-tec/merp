@@ -14,9 +14,7 @@
 
                         <field name="number_of_packages"/>
                         <field name="items_per_package"/>
-                        <field name="allowed_package_type_ids" invisible="1"/>
-                        <field name="package_type_id"
-                               domain="[('id', 'in', allowed_package_type_ids)]"/>
+                        <field name="package_type_id"/>
                     </group>
 
                     <footer>

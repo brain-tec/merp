@@ -14,7 +14,6 @@
         'base',
         'stock',
         'stock_picking_batch',
-        'delivery',
     ],
     'data': [
         'security/groups.xml',
