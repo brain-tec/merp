@@ -10,9 +10,6 @@ class MultiplePackPackageDetailsWizard(models.TransientModel):
     _name = "multiple.pack.package.details.wizard"
     _description = "Wizard: Package Details (v2)"
 
-    # -------------------------------------------------------------------------
-    # Fields
-    # -------------------------------------------------------------------------
     package_id = fields.Many2one("stock.quant.package", required=True)
     package_name = fields.Char(
         string="Name",
