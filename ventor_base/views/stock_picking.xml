@@ -53,6 +53,7 @@
                     <field name="open_details_screen_first"/>
                     <field name="is_quality_control_module_installed" invisible='1'/>
                     <field name="quality_check_per_product_line" readonly="is_quality_control_module_installed == False"/>
+                    <field name="prohibit_validation_for_incomplete_transfers"/>
                 </list>
             </field>
         </record>
@@ -90,6 +91,7 @@
                                    readonly="is_package_tracking_enabled == False or manage_packages == False"/>
                             <field name="is_consignment_enabled" invisible='1'/>
                             <field name="manage_product_owner" invisible="is_consignment_enabled == False"/>
+                            <field name="prohibit_validation_for_incomplete_transfers"/>
                         </group>
                         <group>
                             <field name="is_stock_production_lot_enabled" invisible='1'/>
