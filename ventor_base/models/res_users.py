@@ -18,6 +18,7 @@ class ResUsers(models.Model):
     allowed_operation_type_ids = fields.Many2many(
         comodel_name='stock.picking.type',
         string='Allowed Operation Types',
+        readonly=True,
         help='List of all operation types user has access to',
     )
 
@@ -62,6 +63,19 @@ class ResUsers(models.Model):
     def SELF_WRITEABLE_FIELDS(self):
         writable_fields = ['ventor_user_settings', 'ventor_filter_settings']
         return super().SELF_WRITEABLE_FIELDS + writable_fields
+
+    def action_configure_allowed_operation_types(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Allowed Operation Types'),
+            'res_model': 'res.users.allowed.operation.type.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_user_id': self.id,
+            },
+        }
 
     def _compute_custom_package_name(self):
         custom_package_name = (

@@ -22,6 +22,7 @@
         'data/ventor_option_setting.xml',
         'data/ventor_sequence_data.xml',
         'report/report_stockpicking_operations.xml',
+        'wizard/allowed_operation_type_wizard_views.xml',
         'views/res_config.xml',
         'views/res_users.xml',
         'views/stock_location.xml',
