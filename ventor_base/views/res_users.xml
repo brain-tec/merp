@@ -40,6 +40,13 @@
                                widget="many2many_tags"
                                options="{'no_create': True}"
                                domain="[('warehouse_id', 'in', allowed_warehouse_ids)]"/>
+
+                        <button name="action_configure_allowed_operation_types"
+                                type="object"
+                                string="Configure"
+                                class="btn-secondary"
+                                icon="fa-sliders"
+                                groups="stock.group_stock_manager"/>
                     </group>
                 </xpath>
             </data>
