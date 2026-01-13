@@ -261,7 +261,7 @@
         <field name="name">See Operation Types from allowed warehouses</field>
         <field name="model_id" ref="ventor_base.model_stock_picking_type"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
+        <field name="domain_force">[('id', 'in', user.allowed_operation_type_ids.ids)]</field>
     </record>
 
     <record id="stock_picking_type_rule_stock_manager" model="ir.rule">
