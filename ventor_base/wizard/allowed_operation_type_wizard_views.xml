@@ -5,11 +5,11 @@
         <field name="name">stock.picking.type.list.user.ot.wizard</field>
         <field name="model">stock.picking.type</field>
         <field name="arch" type="xml">
-            <list create="0" delete="0">
+            <form create="0" delete="0">
                 <field name="name" string="Operation Type"/>
                 <field name="warehouse_id" string="Warehouse"/>
                 <field name="company_id" string="Company"/>
-            </list>
+            </form>
         </field>
     </record>
 
