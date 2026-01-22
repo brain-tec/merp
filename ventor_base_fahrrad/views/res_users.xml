@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="res_user_form_inherit_favorite_operation_type" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.favorite.operation.type</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="ventor_base.res_user_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_configure_allowed_operation_types']" position="after">
+                <field name="favorite_operation_type"
+                       domain="[('id', 'in', allowed_operation_type_ids)]"
+                       options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
