@@ -72,6 +72,16 @@
             <field name="description">If the setting is active the user can edit shipping information before validate OUT transfer</field>
         </record>
 
+        <record id="confirm_source_package" model="ventor.option.setting">
+            <field name="name">Confirm source package</field>
+            <field name="technical_name">confirm_source_package</field>
+            <field name="value" ref="ventor_base.bool_false"/>
+            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
+            <field name="value_type">bool</field>
+            <field name="action_type">package_management</field>
+            <field name="description">User must confirm all source packages before starting the transfer</field>
+        </record>
+
         <!-- Batch picking -->
         <record id="confirm_source_location" model="ventor.option.setting">
             <field name="name">Confirm source location</field>
