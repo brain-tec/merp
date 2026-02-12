@@ -252,10 +252,10 @@
 
     <!-- Multi Warehouses: Picking Type -->
     <record id="stock_picking_type_rule_stock_user" model="ir.rule">
-        <field name="name">See Operation Types from allowed warehouses</field>
+        <field name="name">See Operation Types from allowed operation types</field>
         <field name="model_id" ref="ventor_base.model_stock_picking_type"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">[('id', 'in', user.allowed_operation_type_ids.ids)]</field>
+        <field name="domain_force">['|', ('id','=',False), ('id', 'in', [op.id for op in user.allowed_operation_type_ids])]</field>
     </record>
 
     <record id="stock_picking_type_rule_stock_manager" model="ir.rule">
@@ -327,20 +327,10 @@
 
     <!-- Multi Warehouses: Stock Pickings -->
     <record model="ir.rule" id="stock_picking_rule_stock_user">
-        <field name="name">See Stock Pickings from allowed warehouses</field>
+        <field name="name">See Stock Pickings from allowed operation types</field>
         <field name="model_id" ref="stock.model_stock_picking"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">[
-                    '&amp;',
-                        '|','|',
-                            ('location_id', '=', False),
-                            ('location_id.warehouse_id', '=', False),
-                            ('location_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids]),
-                        '|','|',
-                            ('location_dest_id', '=', False),
-                            ('location_dest_id.warehouse_id', '=', False),
-                            ('location_dest_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids]),
-            ]</field>
+        <field name="domain_force">['|', ('picking_type_id','=',False), ('picking_type_id', 'in', [pt.id for pt in user.allowed_operation_type_ids])]</field>
     </record>
 
     <record model="ir.rule" id="stock_picking_rule_stock_manager">
@@ -350,12 +340,12 @@
         <field name="domain_force">[(1,'=',1)]</field>
     </record>
 
-    <!-- See Picking Batches from allowed Warehouses -->
+    <!-- See Picking Batches from allowed Operation Types -->
     <record model="ir.rule" id="stock_picking_batch_rule_stock_user">
-        <field name="name">See Picking Batches from allowed warehouses</field>
+        <field name="name">See Picking Batches from allowed operation types</field>
         <field name="model_id" ref="stock_picking_batch.model_stock_picking_batch"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">['|', ('picking_type_id','=',False), ('picking_type_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
+        <field name="domain_force">['|', ('picking_type_id','=',False), ('picking_type_id', 'in', [pt.id for pt in user.allowed_operation_type_ids])]</field>
     </record>
 
     <record model="ir.rule" id="stock_picking_batch_rule_stock_manager">
