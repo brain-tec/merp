@@ -243,16 +243,6 @@
             <field name="description">Validate Stock Picking automatically if it completely processed. Note: When ON transfers with all skipped items will be validated with initial quantity</field>
         </record>
 
-        <record id="prohibit_validation_for_incomplete_transfers_batch_picking" model="ventor.option.setting">
-            <field name="name">Prohibit Validation for incomplete transfers</field>
-            <field name="technical_name">prohibit_validation_for_incomplete_transfers</field>
-            <field name="value" ref="ventor_base.bool_false"/>
-            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
-            <field name="value_type">bool</field>
-            <field name="action_type">batch_picking</field>
-            <field name="description">Disables validation until all expected quantities are confirmed</field>
-        </record>
-
         <record id="apply_default_lots_batch_picking" model="ventor.option.setting">
             <field name="name">Apply default lots and serials</field>
             <field name="technical_name">apply_default_lots</field>
@@ -648,16 +638,6 @@
             <field name="description">If the setting is active the Quality check wizard will be shown automatically while processing each product line. Disable if you want to do the Quality check manually after all product lines are confirmed</field>
         </record>
 
-        <record id="prohibit_validation_for_incomplete_transfers_wave_picking" model="ventor.option.setting">
-            <field name="name">Prohibit Validation for incomplete transfers</field>
-            <field name="technical_name">prohibit_validation_for_incomplete_transfers</field>
-            <field name="value" ref="ventor_base.bool_false"/>
-            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
-            <field name="value_type">bool</field>
-            <field name="action_type">wave_picking</field>
-            <field name="description">Disables validation until all expected quantities are confirmed</field>
-        </record>
-
         <record id="group_lines_wave_picking" model="ventor.option.setting">
             <field name="name">Group lines</field>
             <field name="technical_name">group_lines</field>
@@ -979,16 +959,6 @@
             <field name="value_type">bool</field>
             <field name="action_type">cluster_picking</field>
             <field name="description">If the setting is active the Quality check wizard will be shown automatically while processing each product line. Disable if you want to do the Quality check manually after all product lines are confirmed</field>
-        </record>
-
-        <record id="prohibit_validation_for_incomplete_transfers_cluster_picking" model="ventor.option.setting">
-            <field name="name">Prohibit Validation for incomplete transfers</field>
-            <field name="technical_name">prohibit_validation_for_incomplete_transfers</field>
-            <field name="value" ref="ventor_base.bool_false"/>
-            <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
-            <field name="value_type">bool</field>
-            <field name="action_type">cluster_picking</field>
-            <field name="description">Disables validation until all expected quantities are confirmed</field>
         </record>
 
         <!-- Internal transfers -->

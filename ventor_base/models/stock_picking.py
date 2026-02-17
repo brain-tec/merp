@@ -178,11 +178,6 @@ class StockPickingType(models.Model):
         inverse_name="picking_type_id",
     )
 
-    prohibit_validation_for_incomplete_transfers = fields.Boolean(
-        string="Prohibit Validation for incomplete transfers",
-        help="Disables validation until all expected quantities are confirmed"
-    )
-
     quality_check_per_product_line = fields.Boolean(
         string="Quality check per product line",
         help="If the setting is active the Quality check wizard will be shown automatically while "
@@ -403,6 +398,5 @@ class StockPickingType(models.Model):
                 "hide_qty_to_receive": self.hide_qty_to_receive,
                 "open_details_screen_first": self.open_details_screen_first,
                 "quality_check_per_product_line": self.quality_check_per_product_line,
-                "prohibit_validation_for_incomplete_transfers": self.prohibit_validation_for_incomplete_transfers,
             }
         }
