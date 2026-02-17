@@ -2,6 +2,7 @@ from odoo import fields, models, api, _
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
 
+
 class StockPickingType(models.Model):
     _inherit = "stock.picking.type"
 
