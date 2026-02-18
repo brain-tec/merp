@@ -1,4 +1,6 @@
 from odoo import fields, models, api, _
+from odoo.exceptions import UserError
+from odoo.tools.float_utils import float_compare
 
 
 class StockPickingType(models.Model):
@@ -178,9 +180,9 @@ class StockPickingType(models.Model):
         inverse_name="picking_type_id",
     )
 
-    prohibit_validation_for_incomplete_transfers = fields.Boolean(
+    prohibit_validation_incomplete_transfer = fields.Boolean(
         string="Prohibit Validation for incomplete transfers",
-        help="Disables validation until all expected quantities are confirmed"
+        help="Disables validation until all expected quantities are confirmed",
     )
 
     quality_check_per_product_line = fields.Boolean(
@@ -397,6 +399,24 @@ class StockPickingType(models.Model):
                 "hide_qty_to_receive": self.hide_qty_to_receive,
                 "open_details_screen_first": self.open_details_screen_first,
                 "quality_check_per_product_line": self.quality_check_per_product_line,
-                "prohibit_validation_for_incomplete_transfers": self.prohibit_validation_for_incomplete_transfers,
             }
         }
+
+
+class Picking(models.Model):
+    _inherit = "stock.picking"
+
+    def button_validate(self):
+        for picking in self:
+            if picking.picking_type_id.prohibit_validation_incomplete_transfer:
+                for move in picking.move_ids.filtered(lambda m: m.state not in ("done", "cancel")):
+                    if float_compare(
+                        move.quantity_done,
+                        move.product_uom_qty,
+                        precision_rounding=move.product_uom.rounding,
+                    ) < 0:
+                        raise UserError(_(
+                            "This transfer contains unprocessed products. Review the item list "
+                            "and ensure all quantities are processed before validating"
+                        ))
+        return super(Picking, self).button_validate()
