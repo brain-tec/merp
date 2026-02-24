@@ -11,7 +11,6 @@ Change Log
 |
 
 19.0.2.5.0 (2026-02-24)
-    - Added functionality for displaying urgent transfers in the Warehouse Operations menu
     - Added the setting "Confirm source package" to the Package Management menu
     - Added the setting "Group lines" to the Wave Picking menu
     - Added the setting "Use settings from Operation types" to Batch Picking, Cluster Picking, Wave Picking menus
