@@ -1,4 +1,4 @@
-# Copyright 2025 VentorTech OU
+# Copyright 2026 VentorTech OU
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 import math
@@ -18,7 +18,7 @@ class MultiplePackWizard(models.TransientModel):
     """
 
     _name = "multiple.pack.wizard"
-    _description = "Wizard: Multiple Packages (v2)"
+    _description = "Wizard: Multiple Packages"
 
     move_line_id = fields.Many2one(
         "stock.move.line",
