@@ -1,4 +1,4 @@
-# Copyright 2025 VentorTech OU
+# Copyright 2026 VentorTech OU
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 from odoo import _, api, fields, models
@@ -8,7 +8,7 @@ class MultiplePackPackageDetailsWizard(models.TransientModel):
     """Wizard to set package type and shipping weight for multiple packages."""
 
     _name = "multiple.pack.package.details.wizard"
-    _description = "Wizard: Package Details (v2)"
+    _description = "Wizard: Package Details"
 
     package_id = fields.Many2one("stock.package", required=True)
     package_name = fields.Char(
