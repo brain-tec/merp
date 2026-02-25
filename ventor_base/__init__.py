@@ -3,6 +3,8 @@
 
 from . import models
 from . import report
+from . import wizard
+
 from odoo import api, SUPERUSER_ID
 
 def _post_init_hook(cr, registry):
@@ -33,8 +35,12 @@ def _post_init_hook(cr, registry):
         ]
     )
     warehouses = env['stock.warehouse'].with_context(active_test=False).search([])
+    picking_types = env['stock.picking.type'].with_context(active_test=False).search([
+        ('warehouse_id', 'in', warehouses.ids)
+    ])
     for user in users:
         user.allowed_warehouse_ids = [(6, 0, warehouses.ids)]
+        user.allowed_operation_type_ids = [(6, 0, picking_types.ids)]
 
     group_settings = env['res.config.settings'].default_get(
         [

@@ -3,7 +3,7 @@
 
 import json
 
-from odoo import api, models, fields
+from odoo import _, api, models, fields
 
 
 class ResUsers(models.Model):
@@ -13,6 +13,13 @@ class ResUsers(models.Model):
         comodel_name='stock.warehouse',
         string='Allowed Warehouses',
         help='List of all warehouses user has access to',
+    )
+
+    allowed_operation_type_ids = fields.Many2many(
+        comodel_name='stock.picking.type',
+        string='Allowed Operation Types',
+        readonly=True,
+        help='List of all operation types user has access to',
     )
 
     custom_package_name = fields.Char(
@@ -56,6 +63,19 @@ class ResUsers(models.Model):
     def SELF_WRITEABLE_FIELDS(self):
         writable_fields = ['ventor_user_settings', 'ventor_filter_settings']
         return super().SELF_WRITEABLE_FIELDS + writable_fields
+
+    def action_configure_allowed_operation_types(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Allowed Operation Types'),
+            'res_model': 'res.users.allowed.operation.type.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_user_id': self.id,
+            },
+        }
 
     def _compute_custom_package_name(self):
         custom_package_name = (
@@ -113,24 +133,64 @@ class ResUsers(models.Model):
                 if group_stock_picking_wave not in user.groups_id and merp_wave_picking_menu in user.groups_id:
                     merp_wave_picking_menu.write({'users': [(3, user.id)]})
 
+    def _set_operation_types(self, previous_wh_ids_by_user):
+        for user in self:
+            previous_wh_ids = previous_wh_ids_by_user[user.id]
+            current_wh_ids = set(user.allowed_warehouse_ids.ids)
+
+            added_wh_ids = current_wh_ids - previous_wh_ids
+            removed_wh_ids = previous_wh_ids - current_wh_ids
+
+            # 1) Add warehouse -> add active operation types
+            if added_wh_ids:
+                added_operation_types = self.env['stock.picking.type'].search([
+                    ('warehouse_id', 'in', list(added_wh_ids)),
+                    ('active', '=', True),
+                ])
+                user.allowed_operation_type_ids |= added_operation_types
+
+            # 2) Remove warehouse -> remove operation types
+            if removed_wh_ids:
+                removed_operation_types = self.env['stock.picking.type'].with_context(active_test=False).search([
+                    ('warehouse_id', 'in', list(removed_wh_ids)),
+                ])
+                user.allowed_operation_type_ids -= removed_operation_types
+
     @api.model_create_multi
     def create(self, vals_list):
         result = super().create(vals_list)
         if not result.allowed_warehouse_ids:
+            warehouse_ids = self.env["stock.warehouse"].sudo().with_context(active_test=False).search([('id', 'in', result.company_ids.ids)]).ids
             result.write(
                 {
-                    'allowed_warehouse_ids': [
-                        (
-                            6, 0, self.env["stock.warehouse"].sudo().with_context(active_test=False).search([]).ids
-                        )
-                    ]
+                    'allowed_warehouse_ids': warehouse_ids
                 }
             )
         return result
 
     def write(self, vals):
+        if self.env.context.get('skip_allowed_wh_sync'):
+            return super().write(vals)
+
+        warehouses_changed = 'allowed_warehouse_ids' in vals
+        operation_types_changed = 'allowed_operation_type_ids' in vals
+
+        if not (warehouses_changed or operation_types_changed):
+            return super().write(vals)
+
+        previous_wh_ids_by_user = {}
+        if warehouses_changed:
+            previous_wh_ids_by_user = {
+                user.id: set(user.allowed_warehouse_ids.ids)
+                for user in self
+            }
+
         result = super().write(vals)
-        if result and 'allowed_warehouse_ids' in vals:
+        if result:
             self.env['ir.rule'].clear_caches()
+
+            if warehouses_changed:
+                self.with_context(skip_allowed_wh_sync=True)._set_operation_types(previous_wh_ids_by_user)
+
         self._update_group_picking_wave_menu(vals)
         return result
