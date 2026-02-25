@@ -6,6 +6,10 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
+15.0.2.5.0 (2026-02-24)
+***********************
+* Added the setting "Group lines" to the Wave Picking menu
+
 15.0.2.4.0 (2025-11-20)
 ***********************
 * Added the setting "Fast count" to the Inventory Adjustments menu
