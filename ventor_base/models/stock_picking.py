@@ -417,7 +417,7 @@ class Picking(models.Model):
             if self.env.context.get('from_ventor') and picking.picking_type_id.prohibit_validation_incomplete_transfer:
                 for move in picking.move_ids.filtered(lambda m: m.state not in ("done", "cancel")):
                     if not move.picked or float_compare(
-                        sum(move.move_line_ids.mapped('qty_done')),
+                        sum(move.move_line_ids.filtered_domain([('picked','=',True)]).mapped('quantity')),
                         move.product_uom_qty,
                         precision_rounding=move.product_uom.rounding,
                     ) < 0:
