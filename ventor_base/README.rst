@@ -7,6 +7,7 @@ Changelog
 ---------
 
 17.0.2.5.0 (2026-02-24)
+***********************
 * Added the setting "Show next product" to the Batch Picking, Wave Picking menus
 * Added the setting "Confirm source package" to the Package Management menu
 * Added the setting "Group lines" to the Wave Picking menu
