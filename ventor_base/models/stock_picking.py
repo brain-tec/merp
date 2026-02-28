@@ -2,6 +2,7 @@ from odoo import fields, models, api, _
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
 
+
 class StockPickingType(models.Model):
     _inherit = "stock.picking.type"
 
@@ -181,7 +182,7 @@ class StockPickingType(models.Model):
 
     prohibit_validation_incomplete_transfer = fields.Boolean(
         string="Prohibit Validation for incomplete transfers",
-        help="Disables validation until all expected quantities are confirmed(applies only to Ventor app)",
+        help="Disables validation until all expected quantities are confirmed",
     )
 
     quality_check_per_product_line = fields.Boolean(
@@ -401,6 +402,7 @@ class StockPickingType(models.Model):
             }
         }
 
+
 class Picking(models.Model):
     _inherit = "stock.picking"
 
@@ -409,8 +411,8 @@ class Picking(models.Model):
             if self.env.context.get('from_ventor') and picking.picking_type_id.prohibit_validation_incomplete_transfer:
                 for move in picking.move_ids.filtered(lambda m: m.state not in ("done", "cancel")):
                     if not move.picked or float_compare(
-                        sum(move.move_line_ids.filtered_domain([('picked', '=', True)]).mapped('quantity')),
-                        move.quantity,
+                        sum(move.move_line_ids.filtered_domain([('picked','=',True)]).mapped('quantity')),
+                        move.product_uom_qty,
                         precision_rounding=move.product_uom.rounding,
                     ) < 0:
                         raise UserError(_(
