@@ -18,14 +18,13 @@ class ProductProduct(models.Model):
     _barcode_uniq = models.Constraint("CHECK (1=1)", "No error")
 
     @api.model
-    def _name_search(self, name, args=None, operator='ilike', limit=100, order=None):
-        args = args or []
-        domain = []
-        if name:
-            domain = ['|', '|', ('name', operator, name), ('default_code', operator, name),
-                      '|', ('barcode', operator, name), ('barcode_ids', operator, name)]
-        return self._search(Domain.AND([domain, args]),
-                                  limit=limit, order=order)
+    def name_search(self, name='', domain=None, operator='ilike', limit=100):
+        res = super().name_search(name=name, domain=domain, operator=operator, limit=limit)
+        domain = Domain(domain or Domain.TRUE)
+        if not res:
+            products = self.search_fetch(domain & Domain('barcode_ids.name', '=', name), ['display_name'], limit=limit)
+            return [(product.id, product.display_name) for product in products.sudo()]
+        return res
 
     @api.constrains('barcode', 'barcode_ids', 'active')
     def _check_unique_barcode(self):
