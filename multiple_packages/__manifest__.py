@@ -3,7 +3,7 @@
 
 {
     'name': 'Multiple Packages',
-    'version': '19.0.1.0.1',
+    'version': '19.0.1.0.0',
     'author': 'VentorTech',
     'website': 'https://ventor.tech/',
     'license': 'LGPL-3',
