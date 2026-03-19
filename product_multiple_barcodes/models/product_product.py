@@ -2,7 +2,6 @@
 # Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
 from odoo import models, fields, api, _
-from odoo.osv import expression
 from odoo.exceptions import UserError
 
 
@@ -21,14 +20,13 @@ class ProductProduct(models.Model):
     ]
 
     @api.model
-    def _name_search(self, name, args=None, operator='ilike', limit=100, order=None):
-        args = args or []
-        domain = []
-        if name:
-            domain = ['|', '|', ('name', operator, name), ('default_code', operator, name),
-                      '|', ('barcode', operator, name), ('barcode_ids', operator, name)]
-        return self._search(expression.AND([domain, args]),
-                                  limit=limit, order=order)
+    def _name_search(self, name, domain=None, operator='ilike', limit=None, order=None):
+        res = super()._name_search(name, domain=domain, operator=operator, limit=limit, order=order)
+        domain = domain or []
+        if name and not res:
+            product_ids = list(self._search([('barcode_ids.name', operator, name)] + domain, limit=limit, order=order))
+            return product_ids
+        return res
 
     @api.constrains('barcode', 'barcode_ids', 'active')
     def _check_unique_barcode(self):
