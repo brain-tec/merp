@@ -10,6 +10,9 @@ Change Log
 
 |
 
+* 16.0.2.6.0 (2026-03-19)
+    - Added the setting "Prohibit Validation for incomplete transfers" to Operation Types
+
 * 16.0.2.5.0 (2026-02-24)
     - Added functionality for displaying urgent transfers in the Warehouse Operations menu
     - Added the setting "Confirm source package" to the Package Management menu
