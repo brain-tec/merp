@@ -6,6 +6,10 @@ Base module that allows relation between Ventor modules
 Changelog
 ---------
 
+18.0.2.6.0 (2026-03-19)
+***********************
+* Added the setting "Prohibit Validation for incomplete transfers" to Operation Types
+
 18.0.2.5.0 (2026-02-24)
 ***********************
 * Added the setting "Show next product" to the Batch Picking, Wave Picking menus
