@@ -10,6 +10,9 @@ Change Log
 
 |
 
+* 19.0.2.6.0 (2026-03-19)
+    - Added the setting "Prohibit Validation for incomplete transfers" to Operation Types
+
 * 19.0.2.5.0 (2026-02-24)
     - Added the setting "Confirm source package" to the Package Management menu
     - Added the setting "Group lines" to the Wave Picking menu
