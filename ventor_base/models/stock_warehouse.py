@@ -19,7 +19,7 @@ class StockWarehouse(models.Model):
         return res
 
     def _get_users(self):
-        """Get users that should be assigned to warehouses."""
+        """Get users that should be assigned to warehouses"""
         users = self.env['res.users'].search([
             ('share', '=', False),
             ('active', '=', True),
@@ -32,7 +32,7 @@ class StockWarehouse(models.Model):
         return users
 
     def _get_warehouses(self, warehouse):
-        """Get warehouses that should be assigned to users."""
+        """Return a set of warehouse IDs of the same company except the given one"""
         return set(
             self.env['stock.warehouse']
             .with_context(active_test=False)
