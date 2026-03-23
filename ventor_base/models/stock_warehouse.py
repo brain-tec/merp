@@ -18,28 +18,45 @@ class StockWarehouse(models.Model):
             res.update_users_calculated_warehouse()
         return res
 
-    def update_users_calculated_warehouse(self):
-        for warehouse in self:
-            odoo_bot = self.env.ref('base.user_root', raise_if_not_found=False)
-            default_user = self.env.ref('base.default_user', raise_if_not_found=False)
+    def _get_users(self):
+        """Get users that should be assigned to warehouses."""
+        users = self.env['res.users'].search([
+            ('share', '=', False),
+            ('active', '=', True),
+        ])
 
-            special_ids = [u.id for u in (odoo_bot, default_user) if u]
-            users = self.env['res.users'].search([
-                ('share', '=', False),
-                '|',
-                ('active', '=', True),
-                ('id', 'in', special_ids),
+        odoo_bot = self.env.ref('base.user_root', raise_if_not_found=False)
+        if odoo_bot:
+            users |= odoo_bot
+
+        return users
+
+    def _get_warehouses(self, warehouse):
+        """Get warehouses that should be assigned to users."""
+        return set(
+            self.env['stock.warehouse']
+            .with_context(active_test=False)
+            .search([
+                ('company_id', '=', warehouse.company_id.id),
+                ('id', '!=', warehouse.id),
             ])
-            wh_ids = self.env['stock.warehouse'].with_context(active_test=False).search([
-                ('id', '!=', warehouse.id)]).ids
-            wh_ids.sort()
+            .ids
+        )
+
+    def update_users_calculated_warehouse(self):
+        users = self._get_users()
+
+        for warehouse in self:
+            wh_ids = self._get_warehouses(warehouse)
             modified_user_ids = []
+
             for user in users:
-                # Because of specifics on how Odoo working with companies on first start, we have to filter by company
-                user_wh_ids = user.allowed_warehouse_ids.filtered(
-                    lambda wh: wh.company_id.id == warehouse.env.company.id
-                ).ids
-                user_wh_ids.sort()
+                # Because of specifics of how Odoo works with companies on first start,
+                # we have to filter warehouses by company
+                user_wh_ids = set(
+                    user.allowed_warehouse_ids.filtered(lambda wh: wh.company_id.id == warehouse.company_id.id).ids
+                )
+
                 if wh_ids == user_wh_ids:
                     user.allowed_warehouse_ids = [(4, warehouse.id, 0)]
                     modified_user_ids.append(user.id)
