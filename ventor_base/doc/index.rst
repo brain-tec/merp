@@ -14,10 +14,10 @@ Change Log
     - Added the setting "Prohibit Validation for incomplete transfers" to Operation Types
 
 * 16.0.2.5.0 (2026-02-24)
-    - Added functionality for displaying urgent transfers in the Warehouse Operations menu
     - Added the setting "Confirm source package" to the Package Management menu
     - Added the setting "Group lines" to the Wave Picking menu
     - Added the setting "Use settings from Operation types" to Batch Picking, Cluster Picking, Wave Picking menus
+    - Added the setting "Show next product" to the Batch Picking, Wave Picking menus
     - Added ability to hide product price for Ventor
     - Added ability to hide operation types for users
 
