@@ -151,7 +151,7 @@ class ResUsers(models.Model):
     def create(self, vals_list):
         result = super().create(vals_list)
         if not result.allowed_warehouse_ids:
-            warehouse_ids = self.env["stock.warehouse"].sudo().with_context(active_test=False).search([('id', 'in', result.company_ids.ids)]).ids
+            warehouse_ids = self.env["stock.warehouse"].sudo().with_context(active_test=False).search([('company_id', 'in', result.company_ids.ids)]).ids
             result.write(
                 {
                     'allowed_warehouse_ids': warehouse_ids
