@@ -10,6 +10,9 @@ Change Log
 
 |
 
+* 18.0.2.7.0 (2026-04-08)
+    - Optimized Allowed Warehouses assignment on warehouse creation
+
 * 18.0.2.6.0 (2026-03-19)
     - Added the setting "Prohibit Validation for incomplete transfers" to Operation Types
 
