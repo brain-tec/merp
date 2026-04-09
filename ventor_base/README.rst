@@ -6,6 +6,10 @@ Base module that allows relation between Ventor modules
 Changelog
 ---------
 
+17.0.2.7.0 (2026-04-08)
+***********************
+* Optimized Allowed Warehouses assignment on warehouse creation
+
 17.0.2.6.0 (2026-03-19)
 ***********************
 * Added the setting "Prohibit Validation for incomplete transfers" to Operation Types
